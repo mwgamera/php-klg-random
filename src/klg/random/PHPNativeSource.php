@@ -11,16 +11,16 @@ class PHPNativeSource implements SourceEntropyInput {
   /**
    * Approximate time of sample generation in microseconds.
    **/
-  const SAMPLE_TIME = 150;
+  const SAMPLE_TIME = 100;
 
   /**
    * Number of samples retunred in single get_entropy call.
    **/
-  const NOISE_LENGTH = 200;
+  const NOISE_LENGTH = 500;
 
   /**
    * Number of rounds of SHA1 calculated for single sample.
-   * Each sample is a time of execution a loop of that many SHA1 computations.
+   * Each sample is a time of execution of a loop of that many SHA1 computations.
    * This value is adjusted to approximately meet the SAMPLE_TIME.
    * @var integer
    **/
@@ -113,17 +113,7 @@ class PHPNativeSource implements SourceEntropyInput {
    * @return  string    bitstring of data
    **/
   private static function sample_convert($data) {
-    $s = '';
-    foreach ($data as $x) {
-      while ($x) {
-        $c = $x & 0x7f;
-        if ($x & ~0x7f)
-          $c |= 0x80;
-        $x >>= 7;
-        $s .= chr($c);
-      }
-    }
-    return $s;
+    return implode("\x1f", $data);
   }
 
   /**
