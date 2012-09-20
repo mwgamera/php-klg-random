@@ -1,5 +1,6 @@
 {
   "name": "klg/random",
+  "license": "WTFPL-2",
   "autoload": {
     "psr-0": { "klg\\random": "src/" }
   }
