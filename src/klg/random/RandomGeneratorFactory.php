@@ -27,9 +27,11 @@ class RandomGeneratorFactory {
    * @throws RBGException When no RBG could be instantiated
    **/
   public static function instance() {
+    if (self::$instance)
+      return self::$instance;
     foreach (self::$registry as $name) {
       try {
-        return call_user_func("self::instance_$name");
+        return self::$instance = call_user_func("self::instance_$name");
       }
       catch (RBGException $x) {}
     }
