@@ -1,0 +1,25 @@
+Cryptographically secure random generators for PHP.
+
+As PHP core itself does not provide any kind of secure random generator,
+extensions and other not portable means of obtaining entropy must be used.
+This package provides a common interface \klg\random\RandomGenerator
+for multiple secure random bit generators accessible from PHP.
+It exposes the following implementations of it:
+\klg\random\OpenSSLGenerator  which uses openssl_random_pseudo_bytes
+\klg\random\McryptGenerator   which uses mcrypt_create_iv
+\klg\random\EGDGenerator      which reads from Entropy Gathering Daemon
+\klg\random\KernelGenerator   which reads from /dev/urandom
+\klg\random\PHPNativeGenerator  which is slow but fully portable NRBG
+
+Depending on availability of extensions \klg\random\RandomGeneratorFactory
+will instantiate the best available implementation.
+
+Additionally as a convenience wrapper a klg\random\SecureRandom class is
+provided with few utility methods that allow generating random numbers and
+cryptographic tokens (as for use in password reset procedure, etc) easily.
+
+NOTE: Certain internal components are implemented as described in NIST
+  SP 800-90A/B/C but they do NOT strictly conform to the standard nor
+  they are intended to.  Standard requires extensive documentation and
+  testing.
+

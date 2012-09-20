@@ -14,7 +14,7 @@ interface RandomGenerator {
    * This method should be conceptually identical with RBG_Generate
    * function which NIST SP 800-90C refused to specify referring only
    * to ANSI X9.82, Part 4. (X9.82 is on my wishlist, if you like my
-   * code you can but me a copy of it.)
+   * code you can buy me a copy of it.)
    * @param   integer requested number of bits
    * @param   integer requested security strength
    * @return  string  returned bits
