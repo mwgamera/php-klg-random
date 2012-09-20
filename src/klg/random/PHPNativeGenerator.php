@@ -32,7 +32,6 @@ class PHPNativeGenerator implements RandomGenerator, SourceEntropyInput {
     $source = new PHPNativeSEI;
     $strength = HmacSHA1DRBG::MAX_STRENGTH;
     $resist = true;
-    $persona = self::persona($persona);
     $this->drbg = new HmacSHA1DRBG($source, $strength, $resist, $persona);
     $this->strength = $strength;
   }
@@ -68,25 +67,6 @@ class PHPNativeGenerator implements RandomGenerator, SourceEntropyInput {
     if ($min_len > $max_len)
       throw new RBGException('Impossible length of entropy input requested');
     return $this->generate($min_len, $min_ent);
-  }
-
-
-  /**
-   * Build a personalization string that includes any leftover
-   * entropy available in the environment.
-   * @param   string  original personalization string given by application
-   * @return  string  personalization string to be used for internal DRBG
-   **/
-  private static function persona($persona) {
-    $p = $persona;
-    $p.= rand() . uniqid(mt_rand(), true);
-    $p.= @memory_get_usage();
-    $p.= @serialize($GLOBALS);
-    $p.= @implode("\x1f", @array_values(@fstat(@fopen(__FILE__, 'r'))));
-    $p.= @microtime();
-    $len = HmacSHA1DRBG::MAX_PSTRING_LENGTH;
-    $len = ceil($len / 8) * 8;
-    return util\sha1_df($p, $len);
   }
 }
 ?>

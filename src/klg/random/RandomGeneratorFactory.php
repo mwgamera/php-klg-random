@@ -1,5 +1,6 @@
 <?php
 namespace klg\random;
+require_once 'util.php';
 
 /**
  * Static factory that knows about all available RBGs and their
@@ -74,7 +75,23 @@ class RandomGeneratorFactory {
    * @return RandomGenerator
    **/
   protected static function instance_PHPNative() {
-    return new HmacSHA1DRBG(new PHPNativeGenerator);
+    return new HmacSHA1DRBG(new PHPNativeGenerator(self::persona()));
+  }
+
+  /**
+   * Build a personalization string that includes any leftover
+   * entropy available in the environment.
+   * @return  string  personalization string to be used for internal DRBG
+   **/
+  private static function persona() {
+    $p = rand() . uniqid(mt_rand(), true);
+    $p.= @memory_get_usage();
+    $p.= @serialize($GLOBALS);
+    $p.= @implode("\x1f", @array_values(@fstat(@fopen(__FILE__, 'r'))));
+    $p.= @microtime();
+    $len = HmacSHA1DRBG::MAX_PSTRING_LENGTH;
+    $len = ceil($len / 8) * 8;
+    return util\sha1_df($p, $len);
   }
 }
 ?>
