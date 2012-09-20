@@ -17,7 +17,6 @@ interface RandomGenerator {
    * code you can but me a copy of it.)
    * @param   integer requested number of bits
    * @param   integer requested security strength
-   * @param   boolean prediction resistance request
    * @return  string  returned bits
    * @throws RBGException
    **/
