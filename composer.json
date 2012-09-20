@@ -1,0 +1,6 @@
+{
+  "name": "klg/random",
+  "autoload": {
+    "psr-0": { "klg\\random": "src/" }
+  }
+}
