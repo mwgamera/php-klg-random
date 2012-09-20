@@ -28,8 +28,8 @@ class PHPNativeSEI implements SourceEntropyInput {
 
   /**
    * Get raw digitized but unprocessed samples from noise source.
-   * @para    integer   number of samples to be obtained
-   * @random  integer[] array of integer samples
+   * @param   integer   number of samples to be obtained
+   * @return  integer[] array of integer samples
    **/
   protected function get_noise($samples, $rounds = false) {
     if (!$rounds)
@@ -109,7 +109,7 @@ class PHPNativeSEI implements SourceEntropyInput {
 
   /**
    * Convert array of samples to binstring.
-   * @param   intger[]  samples
+   * @param   integer[] samples
    * @return  string    bitstring of data
    **/
   private static function sample_convert($data) {
