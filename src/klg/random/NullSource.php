@@ -5,7 +5,7 @@ namespace klg\random;
  * Entropy Source that provides no entropy very fast.
  * This source may be used for testing and benchmarking.
  **/
-class NullSEI implements SourceEntropyInput {
+class NullSource implements SourceEntropyInput {
   /**
    * Give no entropy.
    * This implementation intentionally violates the contract

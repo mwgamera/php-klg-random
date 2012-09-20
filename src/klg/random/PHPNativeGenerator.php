@@ -6,7 +6,7 @@ require_once 'util.php';
  * Pure PHP portable NRBG.
  * It does not require any extensions or system specific features.
  * An Enhanced NRBG - Oversampling Construction is used to derive full
- * entropy data from PHPNativeSEI which may have low entropy rate.
+ * entropy data from PHPNativeSource which may have low entropy rate.
  * See NIST SP 800-90C, section 9.3.
  **/
 class PHPNativeGenerator implements RandomGenerator, SourceEntropyInput {
@@ -29,7 +29,7 @@ class PHPNativeGenerator implements RandomGenerator, SourceEntropyInput {
    * @throws RBGException
    **/
   public function __construct($persona = '') {
-    $source = new PHPNativeSEI;
+    $source = new PHPNativeSource;
     $strength = HmacSHA1DRBG::MAX_STRENGTH;
     $resist = true;
     $this->drbg = new HmacSHA1DRBG($source, $strength, $resist, $persona);

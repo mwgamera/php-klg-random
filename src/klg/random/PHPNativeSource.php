@@ -6,7 +6,7 @@ require_once 'util.php';
  * Pure PHP portable entropy source that does not require any
  * extensions or system specific features.
  **/
-class PHPNativeSEI implements SourceEntropyInput {
+class PHPNativeSource implements SourceEntropyInput {
 
   /**
    * Approximate time of sample generation in microseconds.
