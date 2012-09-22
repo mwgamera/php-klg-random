@@ -155,8 +155,13 @@ class SecureRandom {
    * @return  string  salt appropriate for selected algorithm
    **/
   public function salt($type = '2y', $security = null) {
-    switch ($type = strtolower($type)) {
+    if ($type[0] === '$') {
+      $type = substr($type, 1);
+      if ($i = strpos($type, '$'))
+        $type = substr($type, 0, $i);
+    }
 
+    switch ($type = strtolower($type)) {
     case 'des-ext': case 'ext-des':
       // CRYPT_EXT_DES
       $alpha = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
