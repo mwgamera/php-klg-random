@@ -24,4 +24,3 @@ class McryptGenerator implements RandomGenerator {
     return $buf;
   }
 }
-?>

@@ -69,4 +69,3 @@ class PHPNativeGenerator implements RandomGenerator, SourceEntropyInput {
     return $this->generate($min_len, $min_ent);
   }
 }
-?>

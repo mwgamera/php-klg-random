@@ -27,4 +27,3 @@ class Autoloader {
     require $class;
   }
 }
-?>

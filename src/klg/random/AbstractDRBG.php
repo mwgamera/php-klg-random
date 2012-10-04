@@ -184,4 +184,3 @@ abstract class AbstractDRBG implements RandomGenerator {
     return $data;
   }
 }
-?>

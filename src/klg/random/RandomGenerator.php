@@ -22,4 +22,3 @@ interface RandomGenerator {
    **/
   public function generate($bits, $strength = 0);
 }
-?>

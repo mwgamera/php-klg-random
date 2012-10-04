@@ -60,4 +60,3 @@ function sha1_df($input, $bits) {
   return $tmp;
 }
 
-?>

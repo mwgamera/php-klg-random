@@ -16,4 +16,3 @@ interface SourceEntropyInput {
    **/
   public function get_entropy_input($min_ent, $min_len, $max_len, $resist = false);
 }
-?>

@@ -36,4 +36,3 @@ class NullSource implements SourceEntropyInput {
     return $data;
   }
 }
-?>

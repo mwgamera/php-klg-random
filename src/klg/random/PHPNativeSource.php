@@ -150,4 +150,3 @@ class PHPNativeSource implements SourceEntropyInput {
     return $tmp;
   }
 }
-?>

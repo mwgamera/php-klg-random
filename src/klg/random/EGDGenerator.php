@@ -128,4 +128,3 @@ class EGDGenerator implements RandomGenerator {
     return $buf;
   }
 }
-?>

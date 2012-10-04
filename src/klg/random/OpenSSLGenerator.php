@@ -29,4 +29,3 @@ class OpenSSLGenerator implements RandomGenerator {
     return $buf;
   }
 }
-?>

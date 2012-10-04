@@ -103,4 +103,3 @@ class HmacSHA1DRBG extends AbstractDRBG implements SourceEntropyInput {
     return $this->generate($min_len, $min_ent, $resist);
   }
 }
-?>

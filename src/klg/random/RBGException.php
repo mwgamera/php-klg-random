@@ -7,4 +7,3 @@ namespace klg\random;
  * error conditions described in NIST SP 800-90 are signalled using this class.
  **/
 class RBGException extends \Exception {} 
-?>

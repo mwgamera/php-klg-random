@@ -66,4 +66,3 @@ class KernelGenerator implements RandomGenerator {
   }
 
 }
-?>

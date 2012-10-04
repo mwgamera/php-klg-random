@@ -96,4 +96,3 @@ class RandomGeneratorFactory {
     return util\sha1_df($p, $len);
   }
 }
-?>
