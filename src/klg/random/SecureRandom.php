@@ -12,7 +12,7 @@ class SecureRandom {
    * Single RBG to be used for everything.
    * @var RandomGenerator
    **/
-  private $source;
+  protected $source;
 
   /**
    * Constructor.
