@@ -126,8 +126,7 @@ class SecureRandom {
    * @return  string  secure token
    **/
   public function token_base64url($length) {
-    return  str_replace(array('+','/'), array('-','_'),
-      $this->token_base64($length));
+    return strtr($this->token_base64($length), '+/', '-_');
   }
 
   /**
@@ -137,8 +136,7 @@ class SecureRandom {
    * @return  string  secure token
    **/
   public function token_crypt($length) {
-    return  str_replace('+', '.',
-      $this->token_base64($length));
+    return strtr($this->token_base64($length), '+', '.');
   }
 
   /**
