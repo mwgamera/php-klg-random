@@ -13,7 +13,7 @@ class RandomGeneratorFactory {
    * @var string[]
    **/
   protected static $registry =
-    array('OpenSSL', 'Mcrypt', 'EGD', 'Kernel', 'PHPNative');
+    array('Kernel', 'OpenSSL', 'Mcrypt', 'EGD', 'PHPNative');
 
   /**
    * Cached instance of the best RBG.
