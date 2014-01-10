@@ -19,7 +19,6 @@ class SecureRandom {
    **/
   public function __construct() {
     $this->source = RandomGeneratorFactory::instance();
-    $this->php_reseed();
   }
 
   /**
