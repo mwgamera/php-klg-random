@@ -43,22 +43,42 @@ class SecureRandom {
   }
 
   /**
-   * Random unsigned integer in given range.
+   * Random integer uniformly distributed in full range.
+   * @return  integer random value
+   **/
+  public function get_raw_integer() {
+    $x = 0;
+    $b =  $this->get_bytes((PHP_INT_SIZE+3)&~3);
+    foreach (unpack('L*', $b) as $w) {
+      $x <<= 32;
+      $x |= $w;
+    }
+    return $x;
+  }
+
+  /**
+   * Random integer uniformly distributed in given range.
    * @param   integer minimal value
    * @param   integer maximal value
-   * @return  integer integer between min and max inclusive
+   * @return  integer random integer between min and max inclusive
    **/
-  public function get_integer($min = 0, $max = 0xffffffff) {
-    if (($range = $max-$min+1) < 1)
+  public function get_integer($min = 0, $max = PHP_INT_MAX) {
+    if (($range = $max - $min) < 1)
       return $max;
-    $i = 1;
-    do
-      if (--$i < 1) {
-        $a = unpack('L*', $this->get_bytes(12));
-        $i = count($a);
-      }
-    while ($a[$i] >= 0x100000000 - (0x100000000 % $range));
-    return $min + ($a[1] % $range);
+    if ($range >= PHP_INT_MAX) {
+      do
+        $x = $this->get_raw_integer();
+      while ($x < $min || $x > $max);
+      return $x;
+    }
+    else {
+      $range = 1 + (int)$range;
+      $max = PHP_INT_MAX - (PHP_INT_MAX % $range);
+      do
+        $x = $this->get_raw_integer() & PHP_INT_MAX;
+      while ($x >= $max);
+      return $min + ($x % $range);
+    }
   }
 
   /**
